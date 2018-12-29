@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth import get_user_model
 from goods.models import Goods
+
 User=get_user_model()
 
 # Create your models here.
@@ -48,8 +49,8 @@ class OrderInfor(models.Model):
         verbose_name=u"订单"
         verbose_name_plural=verbose_name
 
-        def __str__(self):
-            return str(self.order_sn)
+    def __str__(self):
+        return str(self.order_sn)
 
 # class OderGoods(models.Model):
 #     """订单的商品详情"""

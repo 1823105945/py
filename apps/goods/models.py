@@ -15,7 +15,7 @@ class GoodGategory(models.Model):
     code=models.CharField(default="",max_length=30,verbose_name="类别code",help_text="类别code")
     desc=models.TextField(default="",verbose_name="类别描述",help_text="类别描述")
     category_type=models.IntegerField(choices=CATEGORY_TYPE,verbose_name="类目级别",help_text="类目级别")
-    parent_category=models.ForeignKey('self',null=True,blank=True,verbose_name="父类目级别",help_text="父类目级别",related_name="sub_cat")
+    parent_category=models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True,verbose_name="父类目级别",help_text="父类目级别",related_name="sub_cat")
     is_tab=models.BooleanField(default=False,verbose_name="是否导航",help_text="是否导航")
     add_time=models.DateTimeField(default=datetime.now(),verbose_name="添加时间")
 
@@ -29,7 +29,7 @@ class GoodGategory(models.Model):
 
 class GoodsCategoryBrand(models.Model):
     """品牌名"""
-    category=models.ForeignKey(GoodGategory,related_name="brands",null=True,blank=True,verbose_name="商品类目")
+    category=models.ForeignKey(GoodGategory,on_delete=models.CASCADE,related_name="brands",null=True,blank=True,verbose_name="商品类目")
     name=models.CharField(default="",max_length=30,verbose_name="品牌名",help_text="品牌名")
     desc=models.TextField(default="",max_length=200,verbose_name="品牌名称",help_text="品牌名称")
     image=models.ImageField(max_length=200,upload_to="brands/")
@@ -46,7 +46,7 @@ class GoodsCategoryBrand(models.Model):
 
 class Goods(models.Model):
     '''商品'''
-    category=models.ForeignKey(GoodGategory,verbose_name="商品类目")
+    category=models.ForeignKey(GoodGategory,on_delete=models.CASCADE,verbose_name="商品类目")
     goods_sn=models.CharField(max_length=50,default="",verbose_name="商品唯一货号")
     name=models.CharField(max_length=100,verbose_name="商品名")
     click_num=models.IntegerField(default=0,verbose_name="点击数")
