@@ -1,16 +1,18 @@
 from django.db import models
 from datetime import datetime
+from django.conf import settings
+
 from django.contrib.auth import get_user_model
 from goods.models import Goods
 
-User=get_user_model()
+User=settings.AUTH_USER_MODEL
 
 # Create your models here.
 
 class ShoppingCart(models.Model):
     """购物车"""
-    user=models.ForeignKey(User,verbose_name="用户")
-    goods=models.ForeignKey(Goods,verbose_name=u"商品")
+    user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="用户")
+    goods=models.ForeignKey(Goods,on_delete=models.CASCADE,verbose_name=u"商品")
     nums=models.IntegerField(default=0,verbose_name="购买数量")
     add_time=models.DateTimeField(default=datetime.now(),verbose_name=u"添加时间")
 
@@ -32,7 +34,7 @@ class OrderInfor(models.Model):
         ("TRADE_FINISHED","交易结束"),
         ("paying","待支付"),
     )
-    user=models.ForeignKey(User,verbose_name="用户")
+    user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="用户")
     order_sn=models.CharField(max_length=30,null=True,blank=True,unique=True,verbose_name="订单号")
     trade_no=models.CharField(max_length=100,unique=True,null=True,blank=True,verbose_name=u"交易号")
     pay_status=models.CharField(choices=ORDER_STATUS,default="paying",max_length=30,verbose_name="订单状态")

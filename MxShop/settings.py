@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL='user.UserProfile'
+AUTH_USER_MODEL='users.UserProfile'
 
 # Application definition
 
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.users.apps.UsersConfig',
     'DjangoUeditor',
-    'users',
     'goods',
     'trade',
     'user_operation',
