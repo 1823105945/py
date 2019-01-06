@@ -69,3 +69,17 @@ class Goods(models.Model):
 
     def __self__(self):
         return self.name
+
+
+class GoodsImage(models.Model):
+    """商品轮播图"""
+    goods=models.ForeignKey(Goods,on_delete=models.CASCADE,verbose_name="商品",related_name="images")
+    image=models.ImageField(upload_to="",verbose_name="图片",null=True,blank=True)
+    add_time = models.DateTimeField(default=datetime.now(), verbose_name="添加时间")
+
+    class Meta:
+        verbose_name = '商品图片'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.goods.name

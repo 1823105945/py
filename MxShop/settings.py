@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'goods',
     'trade',
     'user_operation',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# 配置图片资源的访问
+MEDIA_URL="/media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,"media")
