@@ -26,11 +26,33 @@ from rest_framework.views import APIView
 
 # 分页方式2
 # 自定义每页大小
-from rest_framework import generics
+# from rest_framework import generics
+# from .models import Goods
+# from .serializers import GoodsSerializer
+# from rest_framework.pagination import PageNumberPagination
+#
+# class GoodsPagination(PageNumberPagination):
+#     page_size = 10
+#     page_size_query_param = "page_size"
+#     page_query_param = "p"
+#     max_page_size = 100
+#
+#
+# class GoodsListView(generics.ListAPIView):
+#     '''商品列表'''
+#     queryset = Goods.objects.all()
+#     serializer_class = GoodsSerializer
+#     pagination_class = GoodsPagination
+
+
+
+
+# 方式3
 from .models import Goods
 from .serializers import GoodsSerializer
 from rest_framework.pagination import PageNumberPagination
-
+from rest_framework import viewsets
+from rest_framework import mixins
 class GoodsPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = "page_size"
@@ -38,7 +60,7 @@ class GoodsPagination(PageNumberPagination):
     max_page_size = 100
 
 
-class GoodsListView(generics.ListAPIView):
+class GoodsListView(mixins.ListModelMixin,viewsets.GenericViewSet,):
     '''商品列表'''
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
