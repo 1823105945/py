@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'DjangoUeditor',
     'goods',
     'trade',
+    'django_filters',
     'user_operation',
     'rest_framework',
 ]
@@ -144,3 +145,10 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 #     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 #     'PAGE_SIZE':10,
 # }
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
+

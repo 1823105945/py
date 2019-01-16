@@ -33,7 +33,7 @@ from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
 router=DefaultRouter()
 # 配置url
-router.register(r'goods',GoodsListView)
+router.register(r'goods',GoodsListView,base_name='Person')
 
 urlpatterns = [
     # path(r'^xadmin/', xadmin.site.urls),
