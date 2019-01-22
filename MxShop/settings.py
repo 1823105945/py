@@ -47,9 +47,12 @@ INSTALLED_APPS = [
     'django_filters',
     'user_operation',
     'rest_framework',
+    'corsheaders',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +63,7 @@ MIDDLEWARE = [
 
 ]
 
+CORS_ORIGIN_ALLOW_ALL=True
 ROOT_URLCONF = 'MxShop.urls'
 
 TEMPLATES = [
@@ -146,9 +150,22 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 #     'PAGE_SIZE':10,
 # }
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend',
-    ),
+
+AUTHENTICATION_BACKENDS=(
+    'users.views.CustomBackend',
+)
+
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        # 'rest_framework.authentication.BasicAuthenticatINSTALLED_APPS ion',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    )
+}
+
+import datetime
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
 

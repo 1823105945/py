@@ -66,6 +66,7 @@ class Goods(models.Model):
     class Meta:
         verbose_name="商品"
         verbose_name_plural=verbose_name
+        ordering = ['id']
 
     def __self__(self):
         return self.name
