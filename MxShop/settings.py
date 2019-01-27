@@ -40,12 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.users.apps.UsersConfig',
+    # 'apps.users.apps.UsersConfig',
     'DjangoUeditor',
     'goods',
     'trade',
     'django_filters',
     'user_operation',
+    'users',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken'
@@ -169,3 +170,5 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
 
+# 手机号码正则表达式
+REGEX_MOBILE='/^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/'

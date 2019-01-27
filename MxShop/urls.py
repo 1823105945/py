@@ -23,7 +23,7 @@ from django.views.static import serve
 from goods.views import GoodsListView,CategoryVuewset
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
-
+from users.views import SmsCodeViewset,UserViewset
 from rest_framework.documentation import include_docs_urls
 # urlpatterns = [
 #     # path(r'^xadmin/', xadmin.site.urls),
@@ -38,6 +38,8 @@ router=DefaultRouter()
 # 配置url
 router.register(r'goods',GoodsListView,base_name='goods')
 router.register(r'categorys',CategoryVuewset,base_name='categorys')
+router.register(r'codes',SmsCodeViewset,base_name='codes')
+router.register(r'users',UserViewset,base_name='users')
 
 goods_list = GoodsListView.as_view({
     'get': 'list',
