@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import SmsSerializer,UserRegSerializer
 from random import choice
-from .models import VerifyCode
+from .models import VerifyCode,UserProfile
 
 
 User=settings.AUTH_USER_MODEL
@@ -52,4 +52,5 @@ class SmsCodeViewset(CreateModelMixin,viewsets.GenericViewSet):
 class UserViewset(CreateModelMixin,viewsets.GenericViewSet):
     '''用户'''
     serializer_class = UserRegSerializer
+    queryset = UserProfile.objects.all()
 
